@@ -11,6 +11,12 @@ Select.get = function(date,callback){
         if(err){
             return callback(err);
         }
-        db.collection()
+        //读取集合users
+        db.collection('users',function(err,collection){
+            if(err){
+                return callback(err);
+            }
+            collection.findOne()
+        })
     });
 }

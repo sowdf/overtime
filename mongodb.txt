@@ -1,0 +1,37 @@
+mongodb 学习
+mongodb.conf
+port = 27017
+dbpath = data
+logpath = log/mongod.log(需要指定文件)
+fork = true
+
+关闭数据库：db.shutdownServer() //需要切换到admin数据库
+查看log日志： tail -f log/mongod.log
+启动mongodb的配置文件：numactl --interleave=all bin/mongod -f conf/mongod.conf
+
+mongodb的基本操作
+查看数据库：show dbs
+切换数据库: use <库名>
+删除数据库：db.dropDatabase()//先切换才能删除
+写入数据：db.<集合名>.insert() 文档的格式为json
+写入数据：db.<集合名>.find() 文档的格式为json默认返回所有数据
+支持js语法for(var i=0; i<100; i++)db.<集合名>.insert({'x':i});
+计数：db.<集合名>.find().count();
+筛选限制排序：db.<集合名>.find().skip(3).limit(2).sort({x:1});跳过前面三条，限制显示两条，按x排序
+更新数据：db.<jhm>.update({x:1},{x:000});将x=1更新为x=000
+更新部分数据：db.<jhm>.update({x:1},{$set:{x:000}});$set存在的会被更新，不存在的不会更新
+查询数据不存在自动创建：db.<jhm>.update({{x:33},{x:333},true});true表示查询的数据不存在则自动创建
+update默认更新找到的第一条
+查到的数据全部更新：db.<jhm>.update({x:1},{$set:{x:2}},false,true)
+数据的删除操作：db.<jhm>.remove({x:1});默认删除所有操作
+删除表：db.<jhm>.drop()
+
+索引操作：
+查看索引：db.<jhm>.getIndexes()
+创建索引：db.<jhm>.ensureIndex({x:1}); 1代表正向排序 -1代表逆向排序
+创建过期索引：db.collection.ensureindex({time:1},{expireAftrerSeconds:10})10秒后过期
+创建过期索引：db.collection.ensureindex({time:1},{expireAftrerSeconds:10})10秒后过期
+
+全文索引：db.<jhm>.ensureIndex({"$**":"text"})
+查询全文索引：db.<jhm>.find({$text:{$search:"ee"}});
+相似度：db.<jhm>.find({$text:{$search:"ee"}，{score:{$meta:"textScore"}}});
