@@ -1,11 +1,15 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
-</html>
+<%include header.ejs%>
+<div class="m_submit">
+  <form method="post">
+    <div>
+      工号：<input type="tel" name="gh" id="">
+    </div>
+    <div>
+      理由：<input name="reason" id="" cols="30" rows="10">
+    </div>
+    <input type="submit" value="提交">
+  </form>
+  <a href="/result">查看今日加班人数</a>
+</div>
+
+<%include footer.ejs%>

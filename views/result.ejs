@@ -1,0 +1,17 @@
+<%include header.ejs%>
+<div class="m_result">
+    <h3>今日加班</h3>
+    <table>
+        <tr>
+            <th>工号</th>
+            <th>加班理由</th>
+        </tr>
+        <%list.forEach(function(doc){%>
+        <tr>
+            <td><%=doc.gh%></td><td><%=doc.reason%></td>
+        </tr>
+        <%})%>
+    </table>
+</div>
+
+<%include footer.ejs%>

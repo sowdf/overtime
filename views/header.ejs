@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<% if (success) { %>
+<div class="m_tips s_green"><%= success %></div>
+<% } %>
+<% if (error) { %>
+<div class="m_tips s_red"><%= error %> </div>
+<% } %>
