@@ -12,6 +12,7 @@ body { font-size:12px; font-family:"΢���ź�"; }
 .clear:after { clear:both; content:""; display:block; }
 input:-webkit-autofill { -webkit-box-shadow: 0 0 0px 1000px white inset; }
 /* end reset */
+.m_title { position:absolute;left:0; top:40px; width:100%; text-align:center; line-height:50px; font-size:24px; }
 .m_tips { position:absolute;width:100%;text-align:center; line-height:40px; top:0; left:0; font-size:24px;font-weight: bold; }
 .s_green { color:green; }
 .s_red { color:red; }
