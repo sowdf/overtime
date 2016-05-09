@@ -24,6 +24,10 @@ module.exports = function(app){
       req.flash('error','请选择工号！');
       return res.redirect('/');
     }
+    if(reason == ''){
+      req.flash('error','请填写理由！');
+      return res.redirect('/');
+    }
     var newEnroll = new Enroll({
       time : time,
       gh : gh,
