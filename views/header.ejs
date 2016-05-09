@@ -4,7 +4,88 @@
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
+<script>
+    window.onload=function()
+    {
+        var oDial=document.getElementById("dial");
+        var oHour=document.getElementById("hour");
+        var oMin=document.getElementById("min");
+        var oSec=document.getElementById("sec");
+        var oToday = document.getElementById('today');
+        toDay(oToday);
+        toDial(oDial);
+        toTime(oHour,oMin,oSec);
+        setInterval(function(){
+            toTime(oHour,oMin,oSec);
+        },1000)
+
+    };
+    function toTime(oHour,oMin,oSec)
+    {
+        var oDate=new Date();
+        var iSec=oDate.getSeconds();
+        var iMin=oDate.getMinutes()+iSec/60;
+        var iHour=(oDate.getHours()%12)+iMin/60;
+        oSec.style.WebkitTransform="rotate("+(iSec*360/60)+"deg)";
+        oMin.style.WebkitTransform="rotate("+(iMin*360/60)+"deg)";
+        oHour.style.WebkitTransform="rotate("+(iHour*360/12)+"deg)";
+    }
+    function toDial(obj)
+    {
+        var sHtml="";
+        var iDeg=6;
+        for(var i=0;i<60;i++)
+        {
+            sHtml+="<span style='-webkit-transform:rotate("+iDeg*i+"deg)'></span>"
+        }
+        obj.innerHTML=sHtml;
+    }
+    function toDay(obj){
+        var date = new Date();
+        var weekday = '';
+        switch (date.getDay()){
+            case 1:
+                weekday = '星期一';
+                break;
+            case 2:
+                weekday = '星期二';
+                break;
+            case 3:
+                weekday = '星期三';
+                break;
+            case 4:
+                weekday = '星期四';
+                break;
+            case 5:
+                weekday = '星期五';
+                break;
+            case 6:
+                weekday = '星期六';
+                break;
+            case 7:
+                weekday = '星期日';
+                break;
+
+        }
+        var str = date.getFullYear() + '年' + (date.getMonth() + 1) + '月' + date.getDate() + '日' + '   ' + weekday;
+        obj.innerHTML = str;
+    }
+</script>
 <body>
+<div class="timerbox">
+    <h3 id="today"></h3>
+    <div id="timebox">
+        <div id="dial">
+        </div>
+        <div id="hand">
+            <div id="hour"></div>
+            <div id="min"></div>
+            <div id="sec"></div>
+            <div id="centre"></div>
+        </div>
+    </div>
+</div>
+
 <% if (success) { %>
 <div class="m_tips s_green"><%= success %></div>
 <% } %>

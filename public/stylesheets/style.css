@@ -12,14 +12,29 @@ body { font-size:12px; font-family:"΢���ź�"; }
 .clear:after { clear:both; content:""; display:block; }
 input:-webkit-autofill { -webkit-box-shadow: 0 0 0px 1000px white inset; }
 /* end reset */
-.m_tips { position:absolute;width:100%;text-align:center; line-height:40px; top:0; left:0; }
+.m_tips { position:absolute;width:100%;text-align:center; line-height:40px; top:0; left:0; font-size:24px;font-weight: bold; }
 .s_green { color:green; }
 .s_red { color:red; }
 .m_submit { margin:100px auto; width:300px; text-align:center; }
 .m_submit a { margin:10px 0; display:inline-block; }
-.m_submit div { margin:10px 0;}
 .m_result { width:500px; margin:50px auto; }
 .m_result h3 { line-height:50px; font-size:26px; text-align:center; }
 .m_result table { width:100%; }
 .m_result th { line-height:40px; font-size:16px; border:solid 1px #ccc; }
 .m_result td { line-height:40px; font-size:14px; border:solid 1px #ccc; }
+.m_submit select { width:230px; margin-bottom:10px; }
+.m_submit .m_btn { width:50px; height:30px;margin-top:20px; }
+.m_reason textarea { width:230px; }
+.m_reason span,.m_reason textarea { vertical-align: top; }
+
+.timerbox { width:206px; margin:80px auto 30px;}
+#timebox{width:206px;height:206px; position:relative;}
+#today { height:50px; line-height:50px; font-size:16px; text-align: center;}
+#dial{height:200px;border:3px solid #000; border-radius:103px; position:relative;}
+#timebox span{ width:2px;height:6px;background:#666; position:absolute;left:99px;top:0;-webkit-transform-origin:0 100px;}
+#hand{ width:12px;height:12px; position:absolute;left:97px;top:97px;}
+#hour{ width:4px; height:45px;background:#000; position:absolute;left:4px;bottom:6px; -webkit-transform-origin:bottom;}
+#min{width:2px;height:60px;background:#666; position:absolute;left:5px;bottom:6px;-webkit-transform-origin:bottom;}
+#sec{width:2px;height:75px;background:red; position:absolute;left:5px;bottom:6px;-webkit-transform-origin:bottom;}
+#centre{height:12px;border-radius:9px;background:#000; position:relative;}
+#dial span:nth-of-type(5n+1){height:10px;background:#000;}

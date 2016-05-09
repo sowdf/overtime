@@ -20,11 +20,16 @@ module.exports = function(app){
     };
     var gh = req.body.gh,
         reason = req.body.reason;
+    if(gh == 0){
+      req.flash('error','请选择工号！');
+      return res.redirect('/');
+    }
     var newEnroll = new Enroll({
       time : time,
       gh : gh,
       reason : reason
     });
+
     Enroll.get(newEnroll.gh,function(err,result){
       if(err){
         req.flash('error',err);

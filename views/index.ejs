@@ -1,13 +1,18 @@
 <%include header.ejs%>
 <div class="m_submit">
   <form method="post">
-    <div>
-      工号：<input type="tel" name="gh" id="">
+    <div class="m_gh">
+      工号：
+      <select name="gh" id="">
+        <option value="0">请选择 </option>
+        <option value="2252">曹志辉</option>
+      </select>
     </div>
-    <div>
-      理由：<input name="reason" id="" cols="30" rows="10">
+    <div class="m_reason">
+      <span>理由：</span>
+      <textarea name="reason" id="" cols="30" rows="10"></textarea>
     </div>
-    <input type="submit" value="提交">
+    <input type="submit" class="m_btn" value="提交">
   </form>
   <a href="/result">查看今日加班人数</a>
 </div>
