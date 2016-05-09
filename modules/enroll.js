@@ -3,6 +3,7 @@ function Enroll(enroll) {
     this.time = enroll.time;
     this.gh = enroll.gh;
     this.reason = enroll.reason;
+    this.name = enroll.name;
 }
 
 module.exports = Enroll;
@@ -11,7 +12,8 @@ Enroll.prototype.save = function(callback){
     var date = {
         time : this.time,
         gh : this.gh,
-        reason : this.reason
+        reason : this.reason,
+        name : this.name
     }
     //打开数据库
     mongodb.open(function(err,db){

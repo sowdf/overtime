@@ -22,7 +22,7 @@ input:-webkit-autofill { -webkit-box-shadow: 0 0 0px 1000px white inset; }
 .m_result h3 { line-height:50px; font-size:26px; text-align:center; }
 .m_result table { width:100%; }
 .m_result th { line-height:40px; font-size:16px; border:solid 1px #ccc; }
-.m_result td { line-height:40px; font-size:14px; border:solid 1px #ccc; }
+.m_result td { line-height:40px; font-size:14px; border:solid 1px #ccc; text-align: center;}
 .m_submit select { width:230px; margin-bottom:10px; }
 .m_submit .m_btn { width:50px; height:30px;margin-top:20px; }
 .m_reason textarea { width:230px; }

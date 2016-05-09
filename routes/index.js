@@ -5,7 +5,9 @@ var Enroll = require('../modules/enroll');
 /* GET home page. */
 module.exports = function(app){
   app.get('/', function(req, res, next) {
+    var gh = req.session.enroll.gh || 0;
     res.render('index', {
+      gh : gh,
       title: '报名',
       success : req.flash('success').toString(),
       error : req.flash('error').toString()
@@ -18,7 +20,9 @@ module.exports = function(app){
       month : date.getMonth() + 1,
       day : date.getFullYear()+ '-' + (date.getMonth() + 1) + '-'+ date.getDate()
     };
-    var gh = req.body.gh,
+    var value = req.body.gh.split('-');
+    var gh = value[0],
+        name = value[1],
         reason = req.body.reason;
     if(gh == 0){
       req.flash('error','请选择工号！');
@@ -29,6 +33,7 @@ module.exports = function(app){
       return res.redirect('/');
     }
     var newEnroll = new Enroll({
+      name : name,
       time : time,
       gh : gh,
       reason : reason
