@@ -5,9 +5,12 @@ var Enroll = require('../modules/enroll');
 /* GET home page. */
 module.exports = function(app){
   app.get('/', function(req, res, next) {
-    var gh = req.session.enroll.gh || 0;
+    var gh ='';
+    if(req.session.enroll){
+      gh = req.session.enroll.gh;
+    }
     res.render('index', {
-      gh : gh,
+      gh : gh || 0,
       title: '报名',
       success : req.flash('success').toString(),
       error : req.flash('error').toString()
@@ -45,7 +48,7 @@ module.exports = function(app){
         return res.redirect('/');
       }
       if(result){
-        if( req.session.enroll.time.day == result.time.day ){
+        if( req.session.enroll && req.session.enroll.time.day == result.time.day ){
           req.flash('error','您今日已提交过！');
           return res.redirect('/');
         }
