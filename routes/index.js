@@ -68,23 +68,21 @@ module.exports = function(app){
         res.redirect('/result');
       });
     });
-    app.get('/result',function(req,res){
-      Enroll.getToday(function(err,list){
-        if(err){
-          req.flash('error',err);
-          return res.redirect('/result');
-        }
-        res.render('result',{
-          title : '报名结果',
-          list : list,
-          success : req.flash('success').toString(),
-          error : req.flash('error').toString()
-        });
-      })
-    })
-
-
   });
+  app.get('/result',function(req,res){
+    Enroll.getToday(function(err,list){
+      if(err){
+        req.flash('error',err);
+        return res.redirect('/result');
+      }
+      res.render('result',{
+        title : '报名结果',
+        list : list,
+        success : req.flash('success').toString(),
+        error : req.flash('error').toString()
+      });
+    })
+  })
 }
 
 
