@@ -63,7 +63,34 @@ Enroll.get = function(gh,callback){
 }
 Enroll.getToday = function(callback){
     var date = new Date();
-    var day = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate();
+    var month = (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1);
+    var day =  date.getDate() < 10 ? '0' +  date.getDate() :  date.getDate();
+    var day = date.getFullYear() + '-' + month + '-' + day;
+    mongodb.open(function(err,db){
+        if(err){
+            return callback(err);
+        }
+        db.collection('enroll',function(err,collection){
+            if(err){
+                mongodb.close();
+                return callback(err);
+            }
+            collection.find({
+                'time.day' : day
+            }).sort({
+                time : -1
+            }).toArray(function(err,docs){
+                mongodb.close();
+                if(err){
+                    return callback(err);
+                }
+                callback(null,docs);
+            });
+        })
+    })
+}
+
+Enroll.getSearch = function(day,callback){
     mongodb.open(function(err,db){
         if(err){
             return callback(err);

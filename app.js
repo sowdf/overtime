@@ -8,6 +8,7 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 
 var routes = require('./routes/index');
+var interface = require('./routes/interface');
 var settings = require('./settings');
 var flash = require('connect-flash');
 
@@ -39,6 +40,7 @@ app.use(session({
 
 
 routes(app);
+interface(app);
 
 app.listen('8081',function(err){
   console.log('Express is Start on port 8081');

@@ -39,3 +39,5 @@ input:-webkit-autofill { -webkit-box-shadow: 0 0 0px 1000px white inset; }
 #sec{width:2px;height:75px;background:red; position:absolute;left:5px;bottom:6px;-webkit-transform-origin:bottom;}
 #centre{height:12px;border-radius:9px;background:#000; position:relative;}
 #dial span:nth-of-type(5n+1){height:10px;background:#000;}
+.m_old { margin-top:20px;}
+.m_old p { line-height:50px; font-size:24px; }

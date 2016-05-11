@@ -18,10 +18,12 @@ module.exports = function(app){
   });
   app.post('/', function(req, res, next) {
     var date = new Date();
+    var month = (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1);
+    var day =  date.getDate() < 10 ? '0' +  date.getDate() :  date.getDate();
     var time = {
       year : date.getFullYear(),
       month : date.getMonth() + 1,
-      day : date.getFullYear()+ '-' + (date.getMonth() + 1) + '-'+ date.getDate()
+      day : date.getFullYear()+ '-' + month  + '-'+ day
     };
     var value = req.body.gh.split('-');
     var gh = value[0],
