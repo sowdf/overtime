@@ -17,16 +17,19 @@ input:-webkit-autofill { -webkit-box-shadow: 0 0 0px 1000px white inset; }
 .s_green { color:green; }
 .s_red { color:red; }
 .m_submit { margin:100px auto; width:300px; text-align:center; }
-.m_submit a { margin:10px 0; display:inline-block; }
+.m_submit a { margin:10px 10px; display:inline-block; }
+.m_submit a:visited { color:blue; }
 .m_result { width:500px; margin:50px auto; }
 .m_result h3 { line-height:50px; font-size:26px; text-align:center; }
-.m_result table { width:100%; }
-.m_result th { line-height:40px; font-size:16px; border:solid 1px #ccc; }
-.m_result td { line-height:40px; font-size:14px; border:solid 1px #ccc; text-align: center;}
+.m_result table,.m_old table { width:100%; }
+.m_result th,.m_old th { line-height:40px; font-size:16px; border:solid 1px #ccc; }
+.m_result td,.m_old td { line-height:40px; font-size:14px; border:solid 1px #ccc; text-align: center;}
 .m_submit select { width:230px; margin-bottom:10px; }
 .m_submit .m_btn { width:50px; height:30px;margin-top:20px; }
 .m_reason textarea { width:230px; }
 .m_reason span,.m_reason textarea { vertical-align: top; }
+.m_old { width:300px; margin:0 auto; }
+.m_old h4 { line-height:30px; font-size:24px; }
 
 .timerbox { width:206px; margin:80px auto 30px;}
 #timebox{width:206px;height:206px; position:relative;}
@@ -40,4 +43,4 @@ input:-webkit-autofill { -webkit-box-shadow: 0 0 0px 1000px white inset; }
 #centre{height:12px;border-radius:9px;background:#000; position:relative;}
 #dial span:nth-of-type(5n+1){height:10px;background:#000;}
 .m_old { margin-top:20px;}
-.m_old p { line-height:50px; font-size:24px; }
+.m_old h4 { line-height:50px; font-size:24px; text-align: center;   }

@@ -11,7 +11,13 @@ module.exports = function(app){
                 });
                 return;
             }
-            console.log(datas);
+            if(datas.length == 0){
+                res.json({
+                    code : 98,
+                    message : '没有你要查询的数据哦'
+                });
+                return ;
+            }
             res.json({
                 code : 100,
                 result : datas

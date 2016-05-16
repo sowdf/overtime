@@ -29,10 +29,10 @@ module.exports = function(app){
     var gh = value[0],
         name = value[1],
         reason = req.body.reason;
-    if(date.getHours() >= 15){
+/*    if(date.getHours() >= 15){
       req.flash('error','已超过报名时间，请明天再来！！');
       return res.redirect('/');
-    }
+    }*/
     if(gh == 0){
       req.flash('error','请选择工号！');
       return res.redirect('/');
@@ -84,6 +84,13 @@ module.exports = function(app){
         error : req.flash('error').toString()
       });
     })
+  });
+  app.get('/old',function(req,res){
+    res.render('old',{
+      title : '往期报名查询',
+      success : req.flash('success').toString(),
+      error : req.flash('error').toString()
+    });
   })
 }
 
