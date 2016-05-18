@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
-
+var nodemailer = require("nodemailer");
 var routes = require('./routes/index');
 var interface = require('./routes/interface');
 var settings = require('./settings');
@@ -37,6 +37,32 @@ app.use(session({
     url : 'mongodb://localhost/overtime'
   })
 }));
+
+
+var transport = nodemailer.createTransport("SMTP", {
+  host: "smtp.qq.com",
+  secureConnection: true, // use SSL
+  port: 465, // port for secure SMTP
+  auth: {
+    user: "773056824@qq.com",
+    pass: "bgetucikjwvpbajh"
+  }
+});
+
+transport.sendMail({
+  from : "773056824@qq.com",
+  to : "229555644@qq.com",
+  subject: "邮件主题",
+  generateTextFromHTML : true,
+  html : "&lt;p&gt;这是封测试邮件&lt;/p&gt;"
+}, function(error, response){
+  if(error){
+    console.log(error);
+  }else{
+    console.log("Message sent: " + response.message);
+  }
+  transport.close();
+});
 
 
 routes(app);
