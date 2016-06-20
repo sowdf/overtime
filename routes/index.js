@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var Enroll = require('../modules/enroll');
+var nodemailer = require("nodemailer");
+var schedule = require("node-schedule");
 
 /* GET home page. */
 module.exports = function(app){
@@ -92,6 +94,60 @@ module.exports = function(app){
       error : req.flash('error').toString()
     });
   })
+}
+
+
+/* 定时执行发送邮件功能 */
+var t = new Date();
+var year = t.getFullYear();
+var month = t.getMonth();
+var day = t.getDate();
+var date = new Date(year,month,day,15,00,00);
+
+
+var j = schedule.scheduleJob(date, function(){
+  Enroll.getToday(function(err,list){
+    if(err){
+      console.log(err);
+      return ;
+    }
+    sendEmail(list);
+  })
+});
+function sendEmail(data){
+  /* 发送邮件功能 */
+  var transport = nodemailer.createTransport("SMTP", {
+    host: "smtp.qq.com",
+    secureConnection: true, // use SSL
+    port: 465, // port for secure SMTP
+    auth: {
+      user: "773056824@qq.com",
+      pass: "bgetucikjwvpbajh"
+    }
+  });
+  var str = '';
+  var length = data.length;
+
+  if(length != 0){
+    data.forEach(function(item,i){
+      str += item.name+ '理由：' + item.reason+'<br/>';
+    });
+  }
+
+  transport.sendMail({
+    from : "773056824@qq.com",
+    to : "zhengguobao@4399inc.com",
+    subject: "今日报名统计结果",
+    generateTextFromHTML : true,
+    html : "</h1>今日报名结果统计：</h1><p>总共加班人数有"+length+"人</p><p>"+str+"</p>;"
+  }, function(error, response){
+    if(error){
+      console.log(error);
+    }else{
+      console.log("Message sent: " + response.message);
+    }
+    transport.close();
+  });
 }
 
 
